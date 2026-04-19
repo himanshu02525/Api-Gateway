@@ -1,0 +1,26 @@
+spring.application.name=api-gateway
+server.port=9090
+eureka.instance.prefer-ip-address=true
+management.endpoints.web.exposure.include=prometheus,health,info   // for actuators prometheus and grafana 
+management.endpoint.health.show-details=always
+
+
+
+#SAMPLE TO WRITE THE CONFIGURATION
+
+spring.cloud.gateway.server.webflux.routes[0].id=budget-resource-service
+spring.cloud.gateway.server.webflux.routes[0].predicates=Path=/api/budget/**
+spring.cloud.gateway.server.webflux.routes[0].uri=lb://BUDGET-RESOURCE-SERVICE
+
+# -------------------------------------------------------------------
+# Eureka Client Configuration
+# -------------------------------------------------------------------
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.instance.prefer-ip-address=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+ 
+
+ 
+
+
